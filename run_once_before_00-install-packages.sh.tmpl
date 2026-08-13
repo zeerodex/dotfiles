@@ -1,0 +1,146 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+if ! command -v paru &> /dev/null; then
+    echo "Installing paru..."
+
+    sudo pacman -S --needed --noconfirm base-devel git
+
+    build_dir=$(mktemp -d)
+    trap 'rm -rf "$build_dir"' EXIT
+
+    git clone https://aur.archlinux.org/paru.git "$build_dir"
+    (cd "$build_dir" && makepkg -si --noconfirm)
+
+    echo "paru installed successfully"
+else
+    echo "paru already installed, skipping"
+fi
+
+packages=(
+    7zip
+    adw-gtk-theme
+    awww
+    bat
+    brightnessctl
+    btop
+    btrfs-progs
+    chezmoi
+    cliphist
+    cmus
+    discord
+    dnsmasq
+    fastfetch
+    fd
+    ffmpegthumbnailer
+    firefox
+    foot
+    fzf
+    gimp
+    gnome-keyring
+    grim
+    gvfs
+    hypridle
+    hyprland
+    hyprlock
+    hyprpolkitagent
+    imv
+    jq
+    kvantum
+    less
+    lib32-mesa
+    lib32-vulkan-radeon
+    libreoffice-fresh
+    libvirt
+    localsend-bin
+    mako
+    man-db
+    man-pages
+    matugen
+    mesa
+    mpv
+    ncdu
+    networkmanager
+    noto-fonts
+    noto-fonts-emoji
+    nvtop
+    nwg-look
+    obs-studio
+    obsidian
+    openssh
+    pacman-contrib
+    papirus-icon-theme
+    paru
+    pipewire
+    pipewire-alsa
+    pipewire-jack
+    pipewire-pulse
+    playerctl
+    python-pipx
+    qalculate-gtk
+    qbittorrent
+    qemu-full
+    qt5-wayland
+    qt5ct
+    qt6-wayland
+    qt6ct
+    rofi
+    satty
+    slurp
+    snap-pac
+    snapper
+    spicetify-cli
+    spotify-launcher
+    starship
+    steam
+    syncthing
+    telegram-desktop
+    tesseract
+    tesseract-data-rus
+    tesseract-data-ukr
+    thunar
+    thunar-archive-plugin
+    thunar-media-tags-plugin
+    thunar-volman
+    tree
+    ttf-dejavu
+    ttf-iosevka-nerd
+    ttf-liberation
+    tumbler
+    unzip
+    vim
+    virt-manager
+    vulkan-radeon
+    waybar
+    wget
+    wiremix
+    wireplumber
+    xarchiver
+    xdg-desktop-portal-gtk
+    xdg-desktop-portal-hyprland
+    yazi
+    yt-dlp
+    zathura
+    zathura-pdf-poppler
+    zed
+    zip
+    zoxide
+    zram-generator
+    zsh
+    {{- if eq .machine "laptop" }}
+    acpi
+    power-profiles-daemon
+    powertop
+    network-manager-applet
+    fwupd
+    bluez-utils
+    {{- else if eq .machine "desktop" }}
+    gamemode
+    lib32-gamemode
+    mangohud
+    lib32-mangohud
+    {{- end }}
+)
+
+paru -S --needed --noconfirm "${packages[@]}"

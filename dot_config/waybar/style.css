@@ -1,0 +1,90 @@
+@import "colors.css";
+
+/* Global */
+* {
+    font-family: "Iosevka Nerd Font";
+    font-size: 10pt;
+    font-weight: 500;
+    border-radius: 0;
+}
+
+/* Panel */
+window#waybar {
+    background-color: @background;
+    color: @on_background;
+}
+
+/* Tooltip */
+tooltip {
+    background-color: @background;
+    border: 1px solid @primary;
+}
+
+/* Tray menu */
+#tray menu {
+    background-color: @background;
+    border: 1px solid @primary;
+}
+
+/* Modules */
+#clock,
+#cpu,
+#custom-pomo,
+#custom-spotify,
+#custom-tray-icon,
+#tray,
+#custom-gpu,
+#privacy,
+#idle_inhibitor,
+#backlight,
+#power-profiles-daemon,
+#battery,
+#language,
+#memory,
+#workspaces button,
+#wireplumber {
+    color: @on_surface;
+    padding: 0 7px;
+}
+
+/* Workspaces */
+#workspaces button {
+    color: @outline;
+}
+
+#workspaces button.active {
+    color: @on_surface;
+}
+
+#workspaces button.urgent {
+    color: @error;
+}
+
+/* Custom pomodoro timer */
+#custom-pomo.paused-work,
+#custom-pomo.paused-break {
+    color: @tertiary;
+}
+
+/*Hardware*/
+#memory.warning {
+    color: @tertiary;
+}
+#memory.critical {
+    color: @error;
+}
+#temperature.warning {
+    color: @tertiary;
+}
+#temperature.critical {
+    color: @error;
+}
+
+/* Misc */
+#custom-separator {
+    color: @surface_variant;
+}
+
+#temperature.cpu {
+    padding: 0 7px 0 0;
+}

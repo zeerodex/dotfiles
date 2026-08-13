@@ -1,0 +1,81 @@
+require("autostart")
+require("environment")
+require("windowrules")
+require("binds")
+require("monitors")
+{{- if eq .machine "laptop" }}
+require("gestures")
+{{- end }}
+require("animation")
+
+local theme = require("colors")
+
+hl.config({
+    general = {
+        border_size = 1,
+        gaps_in = 2,
+        gaps_out = 3,
+
+        col = {
+            active_border = theme.primary,
+            inactive_border = theme.surface_variant,
+        },
+
+        snap = {
+            enabled = true,
+            window_gap = 5,
+        },
+
+        layout = "dwindle",
+
+        allow_tearing = true
+    },
+    decoration = {
+        rounding = 0,
+
+        active_opacity = 1,
+        inactive_opacity = 1,
+        fullscreen_opacity = 1,
+
+        dim_inactive = false,
+
+        blur = {
+            enabled = false,
+        },
+
+        shadow = {
+            enabled = false,
+        },
+    },
+    input = {
+        kb_layout = "us,ru,ua",
+        kb_options = "grp:caps_toggle",
+
+        follow_mouse = true,
+        sensitivity = 0,
+        accel_profile = "flat",
+
+        {{ if eq .machine "laptop" -}}
+        touchpad = {
+            natural_scroll = true,
+            scroll_factor = 1.0,
+        },
+        {{- end }}
+    },
+    misc = {
+        disable_hyprland_logo = true,
+        vrr = 2,
+        mouse_move_enables_dpms = false,
+        key_press_enables_dpms = true,
+        disable_splash_rendering = true,
+        focus_on_activate = true,
+        initial_workspace_tracking = 0,
+    },
+    ecosystem = {
+        no_update_news = true,
+        no_donation_nag = true,
+    },
+    dwindle = {
+        preserve_split = true,
+    },
+})

@@ -1,0 +1,206 @@
+{
+  "layer": "top",
+  "position": "bottom",
+  "spacing": 0,
+  "margin-top": 0,
+  "margin-right": 0,
+  "margin-left": 0,
+  "margin-bottom": 0,
+  "modules-left": [
+    "hyprland/workspaces",
+    "custom/separator",
+    "wireplumber#source",
+    "wireplumber",
+    {{- if eq .machine "laptop" }}
+    "custom/separator",
+    "backlight",
+    {{- end }}
+    "custom/separator",
+    "hyprland/language",
+    "custom/separator",
+    "idle_inhibitor",
+    "privacy"
+  ],
+  "modules-center": ["mpris"],
+  "modules-right": [
+    "tray",
+    "custom/separator",
+    "cpu",
+    "temperature#cpu",
+    {{- if eq .machine "desktop" }}
+    "custom/separator",
+    "custom/gpu",
+    {{- end }}
+    "custom/separator",
+    "memory",
+    {{- if eq .machine "laptop" }}
+    "custom/separator",
+    "power-profiles-daemon",
+    "custom/separator",
+    "battery",
+    {{- end }}
+    "custom/separator",
+    "clock"
+  ],
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "format-icons": {
+      "1": "1",
+      "2": "2",
+      "3": "doc",
+      "4": "steam",
+      "5": "meet",
+      "6": "6",
+      "7": "7",
+      "8": "8",
+      "9": "9",
+      "10": "10",
+      "code": "code",
+      "home": "home",
+      "memo": "memo",
+      "web": "web",
+      "urgent": " ",
+      "default": " "
+    },
+    "on-click": "activate",
+    "sort-by-number": true
+  },
+  "custom/separator": {
+    "format": "|",
+    "tooltip": false
+  },
+  "mpris": {
+    "format": "playing: {title} - {artist}",
+    "format-paused": "paused: {title} - {artist}",
+    // "player": "spotify",
+    "ignored-players": ["firefox"],
+    "on-click": "playerctl -p spotify play-pause",
+    "on-click-right": "playerctl -p spotify next",
+    "on-click-middle": "playerctl -p spotify previous",
+    "on-scroll-up": "playerctl -p spotify volume 0.05+",
+    "on-scroll-down": "playerctl -p spotify volume 0.05-",
+    "max-length": 70
+  },
+  "wireplumber#source": {
+    "node-type": "Audio/Source",
+    "format": "mic: {volume}%",
+    "format-muted": "mic muted",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-right": "foot -e wiremix",
+    "scroll-step": 5
+  },
+  "wireplumber": {
+    "node-type": "Audio/Sink",
+    "format": "vol: {volume}%",
+    "format-muted": "vol muted",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "foot -e wiremix",
+    "scroll-step": 5
+  },
+  "idle_inhibitor": {
+    "format": "{icon}",
+    "format-icons": {
+      "activated": "idle off",
+      "deactivated": "idle on"
+    }
+  },
+  "tray": {
+    "icon-size": 11,
+    "spacing": 7
+  },
+  "privacy": {
+    "icon-spacing": 2,
+    "icon-size": 13,
+    "modules": [
+      {
+        "type": "screenshare",
+        "icon-name": "screen-shared-symbolic"
+      },
+      {
+        "type": "audio-in",
+        "icon-name": "audio-input-microphone-symbolic"
+      }
+    ]
+  },
+  "cpu": {
+    "interval": 5,
+    "format": "cpu: {usage}%",
+    "on-click": "foot -e btop"
+  },
+  "temperature#cpu": {
+    "thermal-zone": 0,
+    "warning-threshold": 70,
+    "critical-threshold": 80,
+    "interval": 5,
+    "format": "{temperatureC}°C",
+    "on-click": "foot -e btop"
+  },
+  {{- if eq .machine "desktop" }}
+  "custom/gpu": {
+    "interval": 5,
+    "exec": "~/.config/waybar/scripts/gpu.sh",
+    "return-type": "json",
+    "on-click": "foot -e nvtop"
+  },
+  {{- end }}
+  "memory": {
+    "states": {
+      "warning": 80,
+      "critical": 95
+    },
+    "format": "ram: {used} GiB",
+    "interval": 5,
+    "on-click": "foot -e btop"
+  },
+  "hyprland/language": {
+    "format": "lang: {}",
+    "format-en": "en",
+    "format-ru": "ru",
+    "format-uk": "uk",
+    "on-click": "hyprctl switchxkblayout current next"
+  },
+  "clock": {
+    "format": "<span text_transform='lowercase'>{:%H:%M %A, %B %d}</span>",
+    "tooltip-format": "<tt><small>{calendar}</small></tt>",
+    "calendar": {
+      "mode": "year",
+      "mode-mon-col": 3,
+      "weeks-pos": "right",
+      "on-scroll": 1,
+      "format": {
+        "months": "{}",
+        "days": "{}",
+        "weeks": "{}",
+        "weekdays": "{}",
+        "today": "{}"
+      }
+    }
+  },
+  {{- if eq .machine "laptop" }}
+  "backlight": {
+    "format": "brightness: {percent}%"
+  },
+  "power-profiles-daemon": {
+    "format": "{profile}"
+  },
+  "battery": {
+    "interval": 60,
+    "states": {
+      "warning": 30,
+      "critical": 15
+    },
+    "events": {
+        "on-discharging-warning": "notify-send -u normal -i battery-caution 'Battery Low' 'You have less than 30% remaining'",
+        "on-discharging-critical": "notify-send -u critical -i battery-empty 'Battery Critical' 'Plug in now — 15% or less remaining'",
+        "on-charging-100": "notify-send -u normal -i battery-full-charged 'Battery Full' 'Fully charged and ready to unplug'",
+        "on-discharging": "notify-send -u normal -i battery-good 'On Battery' 'AC power disconnected'",
+        "on-charging": "notify-send -u normal -i battery-good-charging 'Charging' 'AC power connected'"
+    },
+    "format": "discharging: {capacity}%",
+    "format-charging": "charging: {capacity}%",
+    "format-plugged": "plugged: {capacity}%",
+    "tooltip-format": "{timeTo}, {capacity}%\nHealth: {health}%\nCycles: {cycles}\nPower: {power} W",
+    "max-length": 25
+  }
+  {{- end}}
+}

@@ -1,0 +1,8 @@
+[general]
+resize = { mode="smart" }
+floating-hack = true
+early-exit = true
+corner-roundness = 0
+initial-tool = "brush"
+copy-command = "wl-copy"
+annotation-size-factor = 0.5
