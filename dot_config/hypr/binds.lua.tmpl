@@ -161,9 +161,9 @@ hl.bind("SUPER + ALT + A", hl.dsp.window.move({ workspace = "name:home", follow 
 hl.bind("SUPER + ALT + Z", hl.dsp.window.move({ workspace = "name:memo", follow = false }))
 
 -- Special workspace
-hl.bind("SUPER + X", hl.dsp.workspace.toggle_special())
-hl.bind("SUPER + SHIFT + X", hl.dsp.window.move({ workspace = "special", follow = true }))
-hl.bind("SUPER + ALT + X", hl.dsp.window.move({ workspace = "special", follow = false }))
+hl.bind("SUPER + X", hl.dsp.workspace.toggle_special("scratchpad"))
+hl.bind("SUPER + SHIFT + X", hl.dsp.window.move({ workspace = "special:scratchpad", follow = true }))
+hl.bind("SUPER + ALT + X", hl.dsp.window.move({ workspace = "special:scratchpad", follow = false }))
 
 -- Workspace navigation
 hl.bind("SUPER + GRAVE", hl.dsp.focus({ workspace = "previous" }))

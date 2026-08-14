@@ -3,7 +3,21 @@ hl.gesture({
     direction = "horizontal",
     action = "workspace",
 })
-hl.gesture({ fingers = 4, direction = "down", action = "special", workspace_name = "scratchpad", disable_inhibit = true })
+
+hl.gesture({
+    fingers = 3,
+    direction = "down",
+    action = "special",
+    workspace_name = "scratchpad",
+})
+hl.gesture({
+    fingers = 3,
+    direction = "up",
+    action = function()
+        hl.dispatch(hl.dsp.window.move({ workspace = "special:scratchpad", follow = false }))
+    end,
+})
+
 hl.gesture({
     fingers = 4,
     direction = "up",

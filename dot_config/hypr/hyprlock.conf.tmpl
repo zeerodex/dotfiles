@@ -1,7 +1,7 @@
 source = colors.conf
 
-$font = Iosevka Nerd Font
-$font_size = 16
+$font = {{ .fonts.family }}
+$font_size = {{ (index .fonts .machine).hyprlock }}
 
 $bg = $surface
 $bg_alt = $surface_container

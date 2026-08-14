@@ -2,8 +2,8 @@
 
 /* Global */
 * {
-    font-family: "Iosevka Nerd Font";
-    font-size: 10pt;
+    font-family: "{{ .fonts.family }}";
+    font-size: {{ (index .fonts .machine).waybar }};
     font-weight: 500;
     border-radius: 0;
 }

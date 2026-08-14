@@ -1,0 +1,22 @@
+[fonts]
+    family = "Iosevka Nerd Font"
+
+    [fonts.desktop]
+        foot     = 11
+        waybar   = "11pt"
+        gtk      = 12
+        rofi     = 12
+        qt       = 12
+        hyprlock = 16
+        zathura  = 12
+        mako     = 11
+
+    [fonts.laptop]
+        foot     = 9
+        waybar   = "10pt"
+        gtk      = 10
+        rofi     = 10
+        qt       = 10
+        hyprlock = 16
+        zathura  = 10
+        mako     = 10

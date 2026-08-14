@@ -36,7 +36,7 @@ input_path = '~/.config/matugen/templates/hyprland-colors.conf'
 output_path = '~/.config/hypr/colors.conf'
 
 [templates.mako]
-input_path = '~/.config/matugen/templates/mako'
+input_path = '~/.config/matugen/templates/mako-colors'
 output_path = '~/.config/mako/mako-colors'
 post_hook = 'makoctl reload'
 
@@ -73,7 +73,7 @@ output_path = '~/.config/yazi/theme.toml'
 
 [templates.zathura]
 input_path = '~/.config/matugen/templates/zathura-colors'
-output_path = '~/.config/zathura/zathurarc'
+output_path = '~/.config/zathura/colors'
 
 [templates.zed]
 input_path = '~/.config/matugen/templates/zed-colors.json'

@@ -18,7 +18,7 @@ configuration {
 @import                          "colors.rasi"
 
 * {
-    font: "Iosevka Nerd Font 10";
+    font: "{{ .fonts.family }} {{ (index .fonts .machine).rofi }}";
 }
 
 /*****----- Main Window -----*****/
