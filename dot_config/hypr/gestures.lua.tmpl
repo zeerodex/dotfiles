@@ -1,0 +1,30 @@
+hl.gesture({
+    fingers = 3,
+    direction = "horizontal",
+    action = {{- if eq .layout "scrolling" -}} "scroll_move" {{- else -}} "workspace" {{- end -}},
+})
+
+{{ if eq .layout "scrolling" -}}
+hl.gesture({
+    fingers = 3,
+    direction = "pinchin",
+    action = function() hl.dispatch(hl.dsp.layout("colresize +conf")) end,
+})
+hl.gesture({
+    fingers = 3,
+    direction = "up",
+    action = function() hl.dispatch(hl.dsp.layout("fit active")) end,
+})
+hl.gesture({
+    fingers = 3,
+    direction = "pinchout",
+    action = function() hl.dispatch(hl.dsp.layout("colresize -conf")) end,
+})
+hl.gesture({
+    fingers = 3,
+    direction = "down",
+    action = function() hl.dispatch(hl.dsp.layout("fit expand")) end,
+})
+{{- end }}
+
+hl.gesture({ fingers = 2, direction = "pinch", action = "cursor_zoom", zoom_level = 1, mode = "live" })

@@ -16,7 +16,9 @@ hl.bind("SUPER + SHIFT + Q", hl.dsp.window.kill())
 hl.bind("SUPER + V", hl.dsp.window.float({ action = "toggle" }))
 hl.bind("SUPER + F", hl.dsp.window.fullscreen())
 hl.bind("SUPER + P", hl.dsp.window.pin())
+{{- if ne .layout "scrolling" }}
 hl.bind("SUPER + U", hl.dsp.layout("togglesplit"))
+{{- end }}
 
 -- Window focus
 hl.bind("SUPER + H", hl.dsp.focus({ direction = "left" }))
@@ -39,6 +41,22 @@ hl.bind("SUPER + SHIFT + J", hl.dsp.window.move({ direction = "down" }))
 hl.bind("SUPER + SHIFT + K", hl.dsp.window.move({ direction = "up" }))
 hl.bind("SUPER + SHIFT + L", hl.dsp.window.move({ direction = "right" }))
 
+{{ if eq .layout "scrolling" -}}
+-- Scrolling layout
+hl.bind("SUPER + period", hl.dsp.layout("move +col"))
+hl.bind("SUPER + comma", hl.dsp.layout("move -col"))
+hl.bind("SUPER + mouse_up", hl.dsp.layout("move +col"))
+hl.bind("SUPER + mouse_down", hl.dsp.layout("move -col"))
+
+hl.bind("SUPER + SHIFT + period", hl.dsp.layout("swapcol r"))
+hl.bind("SUPER + SHIFT + comma", hl.dsp.layout("swapcol l"))
+
+hl.bind("SUPER + R", hl.dsp.layout("colresize +conf"))
+hl.bind("SUPER + SHIFT + R", hl.dsp.layout("colresize -conf"))
+
+hl.bind("SUPER + SHIFT + F", hl.dsp.layout("fit active"))
+hl.bind("SUPER + SHIFT + E", hl.dsp.layout("fit expand"))
+{{ else -}}
 -- Window resizing
 hl.bind("SUPER + R", hl.dsp.submap("resize"))
 
@@ -50,6 +68,7 @@ hl.define_submap("resize", function()
 
     hl.bind("escape", hl.dsp.submap("reset"))
 end)
+{{- end }}
 
 -- Applications
 hl.bind("SUPER + RETURN", hl.dsp.exec_cmd(term))
@@ -63,13 +82,13 @@ hl.bind("XF86Calculator", hl.dsp.exec_cmd("qalculate-gtk"))
 hl.bind("SUPER + B", hl.dsp.exec_cmd("qalculate-gtk"))
 {{- end }}
 
-
 -- Utilities
 hl.bind("SUPER + D", hl.dsp.exec_cmd(launcher))
 hl.bind("SUPER + ESCAPE", hl.dsp.exec_cmd(powermenu), { locked = true })
 hl.bind("SUPER + SHIFT + ESCAPE", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind("SUPER + SHIFT + CTRL + ESCAPE", hl.dsp.exit(), { locked = true })
 hl.bind("SUPER + T", hl.dsp.exec_cmd("localsend"))
+hl.bind("SUPER + M", hl.dsp.exec_cmd("chezmoi apply"))
 
 -- Clipboard
 hl.bind("SUPER + SEMICOLON",

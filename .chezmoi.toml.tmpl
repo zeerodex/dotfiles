@@ -1,3 +1,5 @@
 {{- $machine := promptStringOnce . "machine" "Machine type (laptop/desktop)" -}}
+{{- $layout := promptStringOnce . "layout" "Layout type (dwindle/scrolling)" -}}
 [data]
     machine = {{ $machine | quote }}
+    layout = {{ $layout | quote }}

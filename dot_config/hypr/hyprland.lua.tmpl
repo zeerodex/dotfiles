@@ -26,7 +26,11 @@ hl.config({
             window_gap = 5,
         },
 
-        layout = "dwindle",
+        layout = {{- if eq .layout "scrolling" -}}
+        "scrolling"
+        {{- else -}}
+        "dwindle"
+        {{- end }},
 
         allow_tearing = true
     },
