@@ -186,15 +186,14 @@
   "battery": {
     "interval": 60,
     "states": {
-      "warning": 30,
-      "critical": 15
+      "warning": 20,
+      "critical": 10
     },
     "events": {
-        "on-discharging-warning": "notify-send -u normal -i battery-caution 'Battery Low' 'You have less than 30% remaining'",
-        "on-discharging-critical": "notify-send -u critical -i battery-empty 'Battery Critical' 'Plug in now — 15% or less remaining'",
-        "on-charging-100": "notify-send -u normal -i battery-full-charged 'Battery Full' 'Fully charged and ready to unplug'",
-        "on-discharging": "notify-send -u normal -i battery-good 'On Battery' 'AC power disconnected'",
-        "on-charging": "notify-send -u normal -i battery-good-charging 'Charging' 'AC power connected'"
+      "on-discharging-warning": "notify-send -u normal -i battery-caution 'Battery is low'",
+      "on-discharging-critical": "notify-send -u critical -i battery-empty 'Battery is critically low'",
+      "on-charging-80": "notify-send -u normal -i battery-good-charging 'Battery has reached 80%'",
+      "on-charging-100": "notify-send -u normal -i battery-full-charging 'Battery is full'"
     },
     "format": "discharging: {capacity}%",
     "format-charging": "charging: {capacity}%",

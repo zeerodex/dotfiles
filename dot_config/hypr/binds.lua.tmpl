@@ -87,8 +87,7 @@ hl.bind("SUPER + D", hl.dsp.exec_cmd(launcher))
 hl.bind("SUPER + ESCAPE", hl.dsp.exec_cmd(powermenu), { locked = true })
 hl.bind("SUPER + SHIFT + ESCAPE", hl.dsp.exec_cmd("loginctl lock-session"))
 hl.bind("SUPER + SHIFT + CTRL + ESCAPE", hl.dsp.exit(), { locked = true })
-hl.bind("SUPER + T", hl.dsp.exec_cmd("localsend"))
-hl.bind("SUPER + M", hl.dsp.exec_cmd("chezmoi apply"))
+hl.bind("SUPER + T", hl.dsp.exec_cmd("localsend", { float = true }))
 
 -- Clipboard
 hl.bind("SUPER + SEMICOLON",

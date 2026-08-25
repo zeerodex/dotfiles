@@ -1,93 +1,24 @@
 #!/usr/bin/env bash
-#
-# View or set the battery charge_types mode (Fast / Standard / Long_Life) using the ideapad_laptop kernel driver.
-# 
-# Usage:
-#   ./charge-mode.sh                # interactive menu
-#   ./charge-mode.sh fast            # set Fast (Rapid Charge)
-#   ./charge-mode.sh standard        # set Standard
-#   ./charge-mode.sh long / longlife # set Long_Life (Conservation Mode)
-#   ./charge-mode.sh status          # just show current mode
-#
-# Must be run as root (or via sudo) to actually change the mode.
 
-set -euo pipefail
+TARGET="/sys/class/power_supply/BAT0/charge_types"
 
-BAT="${BAT_NAME:-BAT0}"
-SYSFS="/sys/class/power_supply/${BAT}/charge_types"
-
-die() {
-    echo "Error: $*" >&2
-    exit 1
-}
-
-[ -e "$SYSFS" ] || die "No charge_types file found at $SYSFS
-  This kernel/driver may not support it, or your battery is named differently.
-  Try: ls /sys/class/power_supply/  and set BAT_NAME=<name> if it's not BAT0."
-
-# Parse "Fast [Standard] Long_Life" -> current="Standard", list of all modes
-raw="$(cat "$SYSFS")"
-current="$(echo "$raw" | grep -oP '(?<=\[)[^]]+(?=\])')"
-modes=($(echo "$raw" | sed 's/\[//; s/\]//'))
-
-show_status() {
-    echo "Battery: $BAT"
-    echo "Current mode: $current"
-    echo "Available modes: ${modes[*]}"
-}
-
-set_mode() {
-    local target="$1"
-    # Validate the requested mode is actually offered on this device
-    local match=""
-    for m in "${modes[@]}"; do
-        if [[ "${m,,}" == "${target,,}" ]]; then
-            match="$m"
-            break
-        fi
-    done
-    [ -n "$match" ] || die "Mode '$target' not available. Options: ${modes[*]}"
-
-    if [ "$match" == "$current" ]; then
-        echo "Already set to $match — nothing to do."
-        return
-    fi
-
-    if [ "$EUID" -ne 0 ]; then
-        echo "Root required, re-running with sudo..."
-        echo "$match" | sudo tee "$SYSFS" > /dev/null
-    else
-        echo "$match" > "$SYSFS"
-    fi
-
-    new_current="$(grep -oP '(?<=\[)[^]]+(?=\])' "$SYSFS")"
-    if [ "$new_current" == "$match" ]; then
-        echo "Switched to $match."
-    else
-        echo "Warning: wrote '$match' but sysfs still reports '$new_current'."
-        echo "Your device may not actually support this mode in hardware."
-    fi
-}
-
-interactive_menu() {
-    show_status
-    echo
-    echo "Select a mode:"
-    select choice in "${modes[@]}" "Quit"; do
-        case "$choice" in
-            "Quit") exit 0 ;;
-            "") echo "Invalid choice." ;;
-            *) set_mode "$choice"; break ;;
-        esac
-    done
-}
-
-# --- main ---
-case "${1:-}" in
-    "") interactive_menu ;;
-    status|--status|-s) show_status ;;
-    fast|Fast) set_mode "Fast" ;;
-    standard|Standard) set_mode "Standard" ;;
-    long|longlife|long_life|Long_Life|Conservation|conservation) set_mode "Long_Life" ;;
-    *) die "Unknown argument '$1'. Use: fast | standard | long | status" ;;
+case "$1" in
+    fast|f)
+        echo "Fast" | sudo tee "$TARGET" > /dev/null
+        echo "Current mode: Fast Charging"
+        ;;
+    standard|std|s)
+        echo "Standard" | sudo tee "$TARGET" > /dev/null
+        echo "Current mode: Standard (100%)"
+        ;;
+    save|conservation|long_life|l)
+        echo "Long_Life" | sudo tee "$TARGET" > /dev/null
+        echo "Current mode: Battery Conservation (Long_Life)"
+        ;;
+    ""|status)
+        cat "$TARGET"
+        ;;
+    *)
+        echo "Usage: charge-mode [fast|standard|long_life|status]"
+        ;;
 esac

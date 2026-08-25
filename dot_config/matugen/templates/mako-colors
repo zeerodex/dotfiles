@@ -1,16 +1,12 @@
-# Material You colors
-
 background-color={{colors.surface.default.hex}}
 text-color={{colors.on_surface.default.hex}}
 border-color={{colors.primary.default.hex}}
-# Per-mode settings
 
-[mode=do-not-disturb]
-invisible=1
-on-notify=none
+[urgency=low]
+border-color={{colors.on_surface.default.hex}}
 
-[mode=silent]
-on-notify=none
+[urgency=normal]
+border-color={{colors.primary.default.hex}}
 
-[urgency=high]
+[urgency=critical]
 border-color={{colors.error.default.hex}}

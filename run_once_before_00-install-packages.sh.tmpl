@@ -109,7 +109,7 @@ packages=(
     ttf-liberation
     tumbler
     unzip
-    vim
+    gvim
     virt-manager
     vulkan-radeon
     waybar
@@ -130,10 +130,12 @@ packages=(
     zsh
     {{- if eq .machine "laptop" }}
     acpi
-    power-profiles-daemon
+    tlp
+    tlp-pd
+    tlp-rdw
     powertop
-    network-manager-applet
     fwupd
+    bluez
     bluez-utils
     {{- else if eq .machine "desktop" }}
     gamemode

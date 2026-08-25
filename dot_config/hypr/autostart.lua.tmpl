@@ -10,7 +10,4 @@ hl.on("hyprland.start", function()
 
     hl.exec_cmd("systemctl --user start hyprpolkitagent")
     hl.exec_cmd("hypridle")
-    {{- if eq .machine "laptop" }}
-    hl.exec_cmd("nm-applet")
-    {{- end }}
 end)
