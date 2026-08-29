@@ -40,9 +40,14 @@ input_path = '~/.config/matugen/templates/mako-colors'
 output_path = '~/.config/mako/mako-colors'
 post_hook = 'makoctl reload'
 
-[templates.obsidian]
+[templates.obsidian-main]
 input_path = '~/.config/matugen/templates/obsidian.css'
 output_path = '~/Obsidian/.obsidian/snippets/matugen.css'
+
+[templates.obsidian-kpi]
+input_path = '~/.config/matugen/templates/obsidian.css'
+output_path = '~/KPI/.obsidian/snippets/matugen.css'
+
 
 [templates.pywalfox]
 input_path = '~/.config/matugen/templates/pywalfox-colors.json'
