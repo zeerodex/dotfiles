@@ -93,18 +93,13 @@ hl.window_rule({
 
 -- Zoom
 hl.window_rule({
-    match = { class = "^(zoom|us.zoom.Zoom)$" },
+    match = { class = "^(zoom)$" },
     workspace = "5 silent",
     no_dim = true,
     idle_inhibit = "focus",
     focus_on_activate = false
 })
-hl.window_rule({ match = { class = "^(zoom|us.zoom.Zoom)$", title = "^(zoom)$" }, float = true })
-hl.window_rule({
-    match = { class = "^(zoom|us.zoom.Zoom)$", title = "^(Settings|Participants|Chat|Breakout Rooms)$" },
-    float = true,
-    size  = { 800, 600 },
-})
+hl.window_rule({ match = { class = "^(zoom)$", title = "^(zoom)$" }, float = true, stay_focused = true })
 
 -- Teams
 hl.window_rule({
