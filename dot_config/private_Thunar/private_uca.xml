@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<actions>
+<action>
+	<icon>utilities-terminal</icon>
+	<name>Open Terminal Here</name>
+	<submenu></submenu>
+	<unique-id>1786278575777788-1</unique-id>
+	<command>foot -D %f</command>
+	<description>Open foot terminal in this directory</description>
+	<range></range>
+	<patterns>*</patterns>
+	<startup-notify/>
+	<directories/>
+</action>
+<action>
+	<icon>localsend_app</icon>
+	<name>Send via LocalSend</name>
+	<submenu></submenu>
+	<unique-id>1791191096873875-1</unique-id>
+	<command>localsend --send %F</command>
+	<description>Send selected files/folders to nearby devices</description>
+	<range>*</range>
+	<patterns>*</patterns>
+	<directories/>
+	<audio-files/>
+	<image-files/>
+	<other-files/>
+	<text-files/>
+	<video-files/>
+</action>
+</actions>

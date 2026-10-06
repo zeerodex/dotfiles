@@ -1,6 +1,2 @@
 README.md
-{{- if ne .machine "desktop" }}
-.config/waybar/scripts/gpu.sh
-{{- else if ne .machine "laptop" }}
-.local/bin/charge-mode
-{{- end }}
+.local/state/noctalia/src

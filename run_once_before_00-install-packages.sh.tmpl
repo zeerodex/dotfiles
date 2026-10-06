@@ -21,8 +21,13 @@ fi
 packages=(
     7zip
     adw-gtk-theme
-    awww
+    amd-ucode
+    anki
+    base
+    base-devel
     bat
+    bluez-utils
+    brave-origin-bin
     brightnessctl
     btop
     btrfs-progs
@@ -31,37 +36,49 @@ packages=(
     cmus
     discord
     dnsmasq
+    docker
+    dosfstools
+    ethtool
     fastfetch
     fd
     ffmpegthumbnailer
-    firefox
     foot
+    freesmlauncher-bin
+    fwupd
     fzf
+    gamemode
     gimp
+    git
     gnome-keyring
+    gpu-screen-recorder
     grim
+    guvcview
     gvfs
+    gvim
     hypridle
     hyprland
-    hyprlock
+    hyprpicker
     hyprpolkitagent
     imv
+    jetbrains-toolbox
     jq
-    kvantum
-    less
+    lib32-gamemode
+    lib32-mangohud
     lib32-mesa
     lib32-vulkan-radeon
     libreoffice-fresh
     libvirt
+    linux
+    linux-firmware
     localsend-bin
-    mako
     man-db
     man-pages
-    matugen
+    mangohud
     mesa
     mpv
     ncdu
     networkmanager
+    noctalia
     noto-fonts
     noto-fonts-emoji
     nvtop
@@ -70,6 +87,7 @@ packages=(
     obsidian
     openssh
     pacman-contrib
+    pandoc-cli
     papirus-icon-theme
     paru
     pipewire
@@ -77,7 +95,7 @@ packages=(
     pipewire-jack
     pipewire-pulse
     playerctl
-    python-pipx
+    powertop
     qalculate-gtk
     qbittorrent
     qemu-full
@@ -85,64 +103,59 @@ packages=(
     qt5ct
     qt6-wayland
     qt6ct
-    rofi
+    reflector
+    ripgrep
+    rustdesk-bin
     satty
     slurp
+    smartmontools
     snap-pac
     snapper
     spicetify-cli
     spotify-launcher
     starship
     steam
+    sudo
     syncthing
     telegram-desktop
     tesseract
+    tesseract-data-eng
     tesseract-data-rus
     tesseract-data-ukr
     thunar
     thunar-archive-plugin
     thunar-media-tags-plugin
     thunar-volman
+    tldr
+    tlp
+    tlp-pd
+    tlp-rdw
     tree
     ttf-dejavu
     ttf-iosevka-nerd
     ttf-liberation
     tumbler
+    ufw
     unzip
-    gvim
+    upower
     virt-manager
     vulkan-radeon
-    waybar
     wget
-    wiremix
     wireplumber
     xarchiver
     xdg-desktop-portal-gtk
     xdg-desktop-portal-hyprland
+    xournalpp
     yazi
     yt-dlp
     zathura
     zathura-pdf-poppler
+    zbar
     zed
     zip
     zoxide
     zram-generator
     zsh
-    {{- if eq .machine "laptop" }}
-    acpi
-    tlp
-    tlp-pd
-    tlp-rdw
-    powertop
-    fwupd
-    bluez
-    bluez-utils
-    {{- else if eq .machine "desktop" }}
-    gamemode
-    lib32-gamemode
-    mangohud
-    lib32-mangohud
-    {{- end }}
 )
 
 paru -S --needed --noconfirm "${packages[@]}"

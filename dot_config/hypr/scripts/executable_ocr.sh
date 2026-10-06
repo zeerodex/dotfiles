@@ -1,18 +1,36 @@
 #!/usr/bin/env bash
 
-hyprctl dispatch 'hl.dsp.submap("reset")'
+hyprctl dispatch 'hl.dsp.submap("reset")' >/dev/null 2>&1
+
+notify() {
+    notify-send -a "OCR Tool" "$1" "$2"
+}
 
 case "$1" in
     eng)
-        grim -g "$(slurp -d)" - | tesseract - - -l eng | wl-copy
+        LANG="eng"
+        LABEL="English"
         ;;
     ukr)
-        grim -g "$(slurp -d)" - | tesseract - - -l ukr | wl-copy
+        LANG="ukr"
+        LABEL="Ukrainian"
         ;;
     rus)
-        grim -g "$(slurp -d)" - | tesseract - - -l rus | wl-copy
+        LANG="rus"
+        LABEL="Russian"
         ;;
-    *)
-        grim -g "$(slurp -d)" - | tesseract - - -l eng+rus+ukr | wl-copy
+    all|eng+ukr+rus|*)
+        LANG="eng+ukr+rus"
+        LABEL="Eng+Ukr+Rus"
         ;;
 esac
+
+AREA=$(slurp -d) || exit 1
+TEXT=$(grim -g "$AREA" - | tesseract - - -l "$LANG" 2>/dev/null)
+
+if [ -n "$TEXT" ]; then
+    printf '%s' "$TEXT" | wl-copy
+    notify "OCR ($LABEL)" "Recognized text copied to clipboard"
+else
+    notify "OCR ($LABEL)" "No text recognized"
+fi

@@ -1,0 +1,212 @@
+config_version = 14
+
+[audio]
+enable_overdrive = true
+
+[bar.default]
+center = [ "media" ]
+concave_edge_corners = false
+end = [ "battery", "network", "bluetooth", "caffeine", "widget_2", "recorder", "widget", "notifications", "clock" ]
+margin_ends = 0
+padding = 5
+position = "bottom"
+radius = 0
+scale = 0.95000000670552254
+shadow = false
+start = [ "workspaces", "input_volume", "output_volume", "brightness", "keyboard_layout", "privacy", "tray" ]
+thickness = 25
+widget_spacing = 15
+
+[battery]
+warning_threshold = 20
+
+[calendar]
+enabled = true
+
+[control_center.calendar]
+show_events_card = false
+
+[desktop_widgets]
+enabled = false
+
+[location]
+address = "Kyiv, Ukraine"
+
+[lockscreen]
+fingerprint = false
+
+[lockscreen_widgets]
+enabled = true
+schema_version = 2
+widget_order = [ "lockscreen-login-box@eDP-1", "lockscreen-widget-0000000000000001", "lockscreen-widget-0000000000000002" ]
+
+    [lockscreen_widgets.grid]
+    cell_size = 24
+    major_interval = 4
+    visible = true
+
+    [lockscreen_widgets.widget."lockscreen-login-box@eDP-1"]
+    box_height = 70.0
+    box_width = 400.0
+    cx = 960.0
+    cy = 1043.0
+    output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "login_box"
+
+        [lockscreen_widgets.widget."lockscreen-login-box@eDP-1".settings]
+        background_color = "surface_variant"
+        background_opacity = 0.88
+        background_radius = 12.0
+        center_password_text = false
+        input_opacity = 1.0
+        input_radius = 6.0
+        layout = "compact"
+        show_caps_lock = true
+        show_keyboard_layout = true
+        show_login_button = true
+        show_media = false
+        show_session_buttons = true
+        show_unlock_hint = false
+        show_weather = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000001]
+    box_height = 384.0
+    box_width = 816.0
+    cx = 960.0
+    cy = 480.0
+    output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
+    rotation = 0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000001.settings]
+        background = false
+        background_color = "surface"
+        background_radius = 0
+        clock_style = "digital"
+        format = "{:%H:%M}"
+        shadow = false
+
+    [lockscreen_widgets.widget.lockscreen-widget-0000000000000002]
+    box_height = 96.0
+    box_width = 504.0
+    cx = 960.0
+    cy = 672.0
+    output = "eDP-1"
+    placement_height = 1200.0
+    placement_width = 1920.0
+    rotation = -0.0
+    type = "clock"
+
+        [lockscreen_widgets.widget.lockscreen-widget-0000000000000002.settings]
+        background = false
+        format = "{:%A %d.%m}"
+        shadow = false
+
+[notification]
+layer = "overlay"
+
+[osd]
+background_opacity = 0.99999997764825821
+offset_y = 20
+position = "bottom_center"
+
+    [osd.kinds]
+    keyboard_backlight = false
+    keyboard_layout = false
+    lock_keys = false
+    media = false
+
+[plugin_settings."noctalia/screen_recorder"]
+audio_source = "both"
+video_source = "focused"
+
+[plugin_settings."noctalia/translator"]
+target_lang = "ru"
+
+[plugins]
+enabled = [ "liamwh/emoji-picker", "thepunkoff/pomodoro", "noctalia/screen_recorder", "noctalia/translator" ]
+
+[shell]
+corner_radius_scale = 0.0
+font_family = "Iosevka NF"
+popup_shadows = false
+
+    [shell.launcher.providers.calculator]
+    prefix = "qalc"
+
+    [shell.panel]
+    open_near_click_control_center = true
+    shadow = false
+
+    [shell.screenshot]
+    annotate = true
+    directory = "/home/zeerodex/Pictures/Screenshots"
+
+[system.monitor]
+enabled = false
+
+[theme]
+builtin = "Gruvbox"
+community_palette = "Mine"
+custom_palette = "wallhaven-k82v5q-mc"
+mode = "dark"
+source = "wallpaper"
+wallpaper_scheme = "m3-content"
+
+    [theme.templates]
+    builtin_ids = [ "btop", "foot", "gtk3", "gtk4", "hyprland", "qt" ]
+    community_ids = [ "spicetify", "telegram", "obsidian", "zed", "zathura", "yazi" ]
+
+[wallpaper]
+directory = "/home/zeerodex/Pictures/Wallpapers"
+
+    [wallpaper.default]
+    path = "/home/zeerodex/Pictures/Wallpapers/wallhaven-k82v5q.png"
+
+    [wallpaper.last]
+    path = "/home/zeerodex/Pictures/Wallpapers/wallhaven-k82v5q.png"
+
+    [wallpaper.monitors.eDP-1]
+    path = "/home/zeerodex/Pictures/Wallpapers/wallhaven-k82v5q.png"
+
+[weather]
+enabled = false
+
+[widget.clock]
+format = "{:%a %d.%m %H:%M}"
+
+[widget.input_volume]
+hide_when_inactive = true
+
+[widget.media]
+hide_when_no_media = true
+max_length = 450
+
+[widget.network]
+show_label = false
+
+[widget.privacy]
+hide_inactive = true
+
+[widget.recorder]
+type = "noctalia/screen_recorder:recorder"
+
+[widget.tray]
+scale = 0.85000000000000009
+
+[widget.widget]
+type = "alexander/screen-toolkit:widget"
+
+[widget.widget_2]
+type = "thepunkoff/pomodoro:widget"
+
+[widget.workspaces]
+empty_color = "on_surface"
+max_label_chars = 5
+occupied_color = "on_surface"
+style = "minimal"
