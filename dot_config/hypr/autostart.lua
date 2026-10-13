@@ -1,7 +1,7 @@
 hl.on("hyprland.start", function()
     hl.exec_cmd("noctalia")
 
-    hl.exec_cmd("Telegram")
+    hl.exec_cmd("Telegram", { workspace = "name:home" })
     hl.exec_cmd("brave-origin", { workspace = "name:web" })
 
     hl.exec_cmd("wl-paste --type text --watch cliphist store")

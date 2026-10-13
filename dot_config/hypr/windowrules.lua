@@ -91,6 +91,12 @@ hl.window_rule({
 })
 
 hl.window_rule({
+    name = "obsidian",
+    match = { class = "^(md.obsidian.Obsidian)$" },
+    workspace = "name:memo silent",
+})
+
+hl.window_rule({
     name = "office-suites",
     match = { class = "^(libreoffice.*|ONLYOFFICE)$" },
     workspace = "3 silent",
