@@ -4,7 +4,7 @@ config_version = 14
 enable_overdrive = true
 
 [bar.default]
-center = [ "media" ]
+center = [ "media", "widget_3", "cat" ]
 concave_edge_corners = false
 end = [ "battery", "network", "bluetooth", "caffeine", "widget_2", "recorder", "widget", "notifications", "clock" ]
 margin_ends = 0
@@ -129,7 +129,7 @@ video_source = "focused"
 target_lang = "ru"
 
 [plugins]
-enabled = [ "liamwh/emoji-picker", "thepunkoff/pomodoro", "noctalia/screen_recorder", "noctalia/translator" ]
+enabled = [ "thepunkoff/pomodoro", "noctalia/screen_recorder", "noctalia/translator" ]
 
 [shell]
 corner_radius_scale = 0.0
@@ -144,7 +144,7 @@ popup_shadows = false
     shadow = false
 
     [shell.screenshot]
-    annotate = true
+    confirm_region = true
     directory = "/home/zeerodex/Pictures/Screenshots"
 
 [system.monitor]
@@ -177,6 +177,9 @@ directory = "/home/zeerodex/Pictures/Wallpapers"
 [weather]
 enabled = false
 
+[widget.cat]
+type = "noctalia/bongocat:cat"
+
 [widget.clock]
 format = "{:%a %d.%m %H:%M}"
 
@@ -204,6 +207,9 @@ type = "alexander/screen-toolkit:widget"
 
 [widget.widget_2]
 type = "thepunkoff/pomodoro:widget"
+
+[widget.widget_3]
+type = "yuuto/arch-updater:widget"
 
 [widget.workspaces]
 empty_color = "on_surface"

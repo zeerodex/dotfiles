@@ -2,8 +2,9 @@ local term         = "foot"
 local file_manager = "thunar"
 local code_editor  = "zeditor"
 local ipc          = "noctalia msg "
-local screenshot   = "~/.config/hypr/scripts/screenshot.sh"
 local ocr          = "~/.config/hypr/scripts/ocr.sh"
+local qr           = "~/.config/hypr/scripts/qr.sh"
+local picker       = "~/.config/hypr/scripts/picker.sh"
 
 -- Window management
 hl.bind("SUPER + Q", hl.dsp.window.close())
@@ -66,30 +67,20 @@ hl.bind("SUPER + SHIFT + CTRL + ESCAPE", hl.dsp.exit(), { locked = true })
 hl.bind("SUPER + D", hl.dsp.exec_cmd(ipc .. "panel-toggle launcher"))
 hl.bind("SUPER + SEMICOLON", hl.dsp.exec_cmd(ipc .. "panel-toggle clipboard"))
 
--- Screenshots
-hl.bind("PRINT", hl.dsp.exec_cmd(screenshot .. " full"))
-hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(screenshot .. " area-copy"))
+-- Screenshots & Capture
+hl.bind("PRINT", hl.dsp.exec_cmd(ipc .. "screenshot-fullscreen"))
+hl.bind("SUPER + SHIFT + S", hl.dsp.exec_cmd(ipc .. "screenshot-region"))
 
 hl.bind("SUPER + S", hl.dsp.submap("screenshot"))
 
 hl.define_submap("screenshot", function()
-    hl.bind("A", hl.dsp.exec_cmd(screenshot .. " area"))
-    hl.bind("SHIFT + A", hl.dsp.exec_cmd(screenshot .. " area-copy"))
-    hl.bind("CTRL + A", hl.dsp.exec_cmd(screenshot .. " area-satty"))
+    hl.bind("F", hl.dsp.exec_cmd(ipc .. "screenshot-fullscreen"))
+    hl.bind("R", hl.dsp.exec_cmd(ipc .. "screenshot-region"))
+    hl.bind("A", hl.dsp.exec_cmd(ipc .. "screenshot-annotate"))
 
-    hl.bind("F", hl.dsp.exec_cmd(screenshot .. " full"))
-    hl.bind("SHIFT + F", hl.dsp.exec_cmd(screenshot .. " full-copy"))
-    hl.bind("CTRL + F", hl.dsp.exec_cmd(screenshot .. " full-satty"))
-
-    hl.bind("W", hl.dsp.exec_cmd(screenshot .. " window"))
-    hl.bind("SHIFT + W", hl.dsp.exec_cmd(screenshot .. " window-copy"))
-    hl.bind("CTRL + W", hl.dsp.exec_cmd(screenshot .. " window-satty"))
-
-    hl.bind("L", hl.dsp.exec_cmd(screenshot .. " last-satty"))
-    hl.bind("C", hl.dsp.exec_cmd(screenshot .. " clip-satty"))
-
-    hl.bind("Q", hl.dsp.exec_cmd(screenshot .. " qr"))
-    hl.bind("P", hl.dsp.exec_cmd(screenshot .. " pick"))
+    hl.bind("Q", hl.dsp.exec_cmd(qr))
+    hl.bind("P", hl.dsp.exec_cmd(picker))
+    hl.bind("C", hl.dsp.exec_cmd(picker))
 
     hl.bind("ESCAPE", hl.dsp.submap("reset"))
 end)
