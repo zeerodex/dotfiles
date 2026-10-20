@@ -56,6 +56,7 @@ hl.window_rule({
     match = { class = "^(imv|feh|sxiv|nsxiv|eog|org.gnome.eog|gwenview|org.kde.gwenview|mpv|vlc)$" },
     float = true,
     center = true,
+    size = { 1440, 900 }
 })
 
 hl.window_rule({
@@ -86,7 +87,7 @@ hl.window_rule({
 
 hl.window_rule({
     name = "document-readers",
-    match = { class = "^(evince|org.gnome.Evince|okular|org.kde.okular|org.pwmt.zathura)$" },
+    match = { class = "^(evince|org.gnome.Evince|okular|org.kde.okular|org.pwmt.zathura|com.github.xournalpp.xournalpp)$" },
     workspace = "3 silent",
 })
 

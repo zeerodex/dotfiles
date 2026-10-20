@@ -82,6 +82,7 @@ hl.define_submap("screenshot", function()
     hl.bind("P", hl.dsp.exec_cmd(picker))
     hl.bind("C", hl.dsp.exec_cmd(picker))
 
+    hl.bind("catchall", hl.dsp.submap("reset"))
     hl.bind("ESCAPE", hl.dsp.submap("reset"))
 end)
 
@@ -96,6 +97,7 @@ hl.define_submap("ocr", function()
     hl.bind("O", hl.dsp.exec_cmd(ocr .. " all"))
     hl.bind("SPACE", hl.dsp.exec_cmd(ocr .. " all"))
 
+    hl.bind("catchall", hl.dsp.submap("reset"))
     hl.bind("ESCAPE", hl.dsp.submap("reset"))
 end)
 

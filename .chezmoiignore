@@ -1,2 +1,5 @@
 README.md
 .local/state/noctalia/src
+.agents
+.gemini
+.luarc.json
